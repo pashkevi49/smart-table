@@ -19,13 +19,17 @@ const {data, ...indexes} = initData(sourceData);
 function collectState() {
     const state = processFormData(new FormData(sampleTable.container));
 
-    const rowsPerPage = parseInt(state.rowsPerPage);   // к числу
-    const page = parseInt(state.page ?? 1);            // по умолчанию 1
+    const rowsPerPage = parseInt(state.rowsPerPage);
+    const page = parseInt(state.page ?? 1);
 
     return {
         ...state,
         rowsPerPage,
-        page
+        page,
+        total: [
+            state.totalFrom ? parseFloat(state.totalFrom) : null,
+            state.totalTo ? parseFloat(state.totalTo) : null
+        ]
     };
 }
 
